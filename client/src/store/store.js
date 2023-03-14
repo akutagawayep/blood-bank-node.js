@@ -29,6 +29,7 @@ export default class Store {
       localStorage.setItem("token", res.data.accessToken);
       this.setAuth(true);
       this.setUser(res.data.user);
+      console.log(res.data.user);
     } catch (e) {
       console.log(e.res?.data?.message);
     }
@@ -42,10 +43,10 @@ export default class Store {
     } catch (e) {
       console.log(e.res?.data?.message);
     }
-  } 
+  }
   async logout() {
     try {
-      const res = await AuthService.logout();
+      await AuthService.logout();
       localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser();
@@ -60,9 +61,9 @@ export default class Store {
       const res = await axios.get(`${API_URL}/refresh`, {
         withCredentials: true,
       });
-      localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem("token", res.data?.accessToken);
       this.setAuth(true);
-      this.setUser(res.data.user);
+      this.setUser(res.data?.user);
     } catch (e) {
     } finally {
       this.setLoading(false);
