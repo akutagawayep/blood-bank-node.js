@@ -17,26 +17,26 @@ const Footer = () => {
           results with Execution often Within given amount
         </p>
         <div className={s.logos}>
-          <a href="">
+          <a href="bb">
             <IoLogoLinkedin />
           </a>
-          <a href="">
+          <a href="bb">
             <IoLogoPython />
           </a>
-          <a href="">
+          <a href="bb">
             <FaInstagramSquare />
           </a>
-          <a href="">
+          <a href="bb">
             <FaAccessibleIcon />
           </a>
         </div>
       </div>
       <div className={s.links}>
         <h2>Полезные ссылки</h2>
-        <a href="">FAQ’s</a>
-        <a href="">Privacy Policy</a>
-        <a href="">Term & Conditions</a>
-        <a href="">Support</a>
+        <a href="bb">FAQ’s</a>
+        <a href="bb">Privacy Policy</a>
+        <a href="bb">Term & Conditions</a>
+        <a href="bb">Support</a>
       </div>
       <div className={s.contacts}>
         <h2>Свяжитесь с нами</h2>

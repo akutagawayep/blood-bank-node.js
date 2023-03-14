@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Card from "../../components/card";
 import PostService from "../../services/PostService";
 import Button from "../../UI/Button";

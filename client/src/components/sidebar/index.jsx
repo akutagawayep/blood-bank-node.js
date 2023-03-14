@@ -37,7 +37,7 @@ const Sidebar = () => {
           <>
             <NavLink
               className={({ isActive }) =>
-                isActive ? "active" + " " + "navlink" : "navlink"
+                isActive ? "active navlink" : "navlink"
               }
               key={key}
               to={path}
@@ -52,7 +52,7 @@ const Sidebar = () => {
           <>
             <NavLink
               className={({ isActive }) =>
-                isActive ? "active" + " " + "navlink" : "navlink"
+                isActive ? "active navlink" : "navlink"
               }
               key={key}
               to={path}
@@ -67,7 +67,7 @@ const Sidebar = () => {
           <>
             <NavLink
               className={({ isActive }) =>
-                isActive ? "active" + " " + "navlink" : "navlink"
+                isActive ? "active navlink" : "navlink"
               }
               key={key}
               to={path}
@@ -82,7 +82,7 @@ const Sidebar = () => {
           <>
             <NavLink
               className={({ isActive }) =>
-                isActive ? "active" + " " + "navlink" : "navlink"
+                isActive ? "active navlink" : "navlink"
               }
               key={key}
               to={path}
@@ -112,7 +112,7 @@ const Sidebar = () => {
                   <>
                     <NavLink
                       className={({ isActive }) =>
-                        isActive ? "active" + " " + "navlink" : "navlink"
+                        isActive ? "active navlink" : "navlink"
                       }
                       key={key}
                       to={path}
@@ -125,14 +125,18 @@ const Sidebar = () => {
           </nav>
         </div>
       </div>
-      {store.user.email}
-      <NavLink className={s.navlink} to={MAIN_ROUTE}>
-        <Button
-          style={{ fontSize: "1.2em" }}
-          title="Выйти"
-          onclick={() => store.logout()}
-        />
-      </NavLink>
+      {store.user?.email}
+      {store.user?.email ? (
+        <NavLink className={s.navlink} to={MAIN_ROUTE}>
+          <Button
+            style={{ fontSize: "1.2em" }}
+            title="Выйти"
+            onclick={() => store.logout()}
+          />
+        </NavLink>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
