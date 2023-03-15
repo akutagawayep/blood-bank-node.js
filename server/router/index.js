@@ -32,4 +32,5 @@ router.post(
 );
 router.get("/getPosts", getPosts);
 
+
 module.exports = router;

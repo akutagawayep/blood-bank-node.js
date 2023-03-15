@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../../UI/Input";
 import s from "./donation.module.scss";
 import { FiSmartphone } from "react-icons/fi";
 import { AiFillMail, AiOutlineQq } from "react-icons/ai";
 import donation from "../../UI/assets/img/donation.png";
 import Button from "../../UI/Button";
+import Form from "react-bootstrap/Form";
+import { Context } from "../..";
 
-const PostPage = (propsrole) => {
+const PostPage = ({ role }) => {
   const [post, setPost] = useState({
     email: "",
-    name: "",
+    name: "Akhmedova Jasmina",
     type: "",
     number: "",
-    key: Date.now(),
-    role: { propsrole },
+    role: role,
+    isActive: false,
+    city: "",
+    date: `${new Date(Date.now()).toLocaleDateString()}`,
   });
+
+  const { store } = useContext(Context);
 
   return (
     <div className={s.root}>
       <div className={s.main}>
         <div className={s.container}>
           <h1>
-            {propsrole === "донор"
+            {role === "донор"
               ? "Сдать кровь"
-              : propsrole === "пациент"
+              : role === "пациент"
               ? "Получить кровь"
               : ""}
           </h1>
@@ -32,20 +38,15 @@ const PostPage = (propsrole) => {
             child={
               <input
                 type="text"
-                placeholder="Имя Фамилие"
+                placeholder="Имя Фамилия"
                 value={post.name}
-                onChange={(e) =>
-                  setPost({
-                    email: post.email,
-                    name: e.target.value,
-                    type: post.type,
-                    number: post.number,
-                    key: post.key,
-                    role: post.role,
-                  })
-                }
+                onChange={(e) => setPost({ ...post, name: e.target.value })}
               />
             }
+          />
+          <Input
+            logo={<AiOutlineQq />}
+            child={<input type="text" value={post.date} disabled />}
           />
           <Input
             logo={<FiSmartphone />}
@@ -56,12 +57,8 @@ const PostPage = (propsrole) => {
                 value={post.number}
                 onChange={(e) =>
                   setPost({
-                    email: post.email,
-                    name: post.name,
-                    type: post.type,
+                    ...post,
                     number: e.target.value,
-                    key: post.key,
-                    role: post.role,
                   })
                 }
               />
@@ -74,19 +71,30 @@ const PostPage = (propsrole) => {
                 type="text"
                 placeholder="email"
                 value={post.email}
-                onChange={(e) =>
-                  setPost({
-                    email: e.target.value,
-                    name: post.name,
-                    type: post.type,
-                    number: post.number,
-                    key: post.key,
-                    role: post.role,
-                  })
-                }
+                onChange={(e) => setPost({ ...post, email: e.target.value })}
+                onInput={() => setPost({ ...post })}
               />
             }
           />
+          <Form.Select
+            onChange={(e) => setPost({ ...post, city: e.target.value })}
+            className={s.select}
+            aria-label="Default select example"
+          >
+            <option className={s.selectitem}>Выберите клинику</option>
+            <option
+              className={s.selectitem}
+              value="улица Тошкент халка автомобил йули (ТКАД), Юнусабадский район, Ташкент"
+            >
+              улица Тошкент халка автомобил йули (ТКАД), Юнусабадский район
+            </option>
+            <option
+              className={s.selectitem}
+              value="ул. Гулимамур, 5/14, Юнусабадский район, Ташкент"
+            >
+              ул. Гулимамур, 5/14, Юнусабадский район
+            </option>
+          </Form.Select>
           <form>
             <label>
               <input
@@ -97,12 +105,8 @@ const PostPage = (propsrole) => {
                 checked={post.type === "O"}
                 onChange={(e) =>
                   setPost({
-                    email: post.email,
-                    name: post.name,
+                    ...post,
                     type: e.target.value,
-                    number: post.number,
-                    key: post.key,
-                    role: post.role,
                   })
                 }
               />
@@ -117,12 +121,8 @@ const PostPage = (propsrole) => {
                 checked={post.type === "A"}
                 onChange={(e) =>
                   setPost({
-                    email: post.email,
-                    name: post.name,
+                    ...post,
                     type: e.target.value,
-                    number: post.number,
-                    key: post.key,
-                    role: post.role,
                   })
                 }
               />
@@ -137,12 +137,8 @@ const PostPage = (propsrole) => {
                 checked={post.type === "B"}
                 onChange={(e) =>
                   setPost({
-                    email: post.email,
-                    name: post.name,
+                    ...post,
                     type: e.target.value,
-                    number: post.number,
-                    key: post.key,
-                    role: post.role,
                   })
                 }
               />
@@ -157,19 +153,15 @@ const PostPage = (propsrole) => {
                 checked={post.type === "AB"}
                 onChange={(e) =>
                   setPost({
-                    email: post.email,
-                    name: post.name,
+                    ...post,
                     type: e.target.value,
-                    number: post.number,
-                    key: post.key,
-                    role: post.role,
                   })
                 }
               />
               <label htmlFor="4">AB</label>
             </label>
           </form>
-          <Button title="сдать" />
+          <Button title="сдать" onclick={() => store.post(post)} />
         </div>
         <img src={donation} alt="к сожалению не удалось загрузить картинку" />
       </div>

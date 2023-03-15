@@ -61,13 +61,23 @@
           }
         }
       }
+
+      .select {
+        width: 45%;
+        padding: 10px 5px;
+        border: 2px solid var(--lightGreen) !important;
+        .selectitem {
+          padding: 15px 5px;
+          border: 2px solid var(--lightGreen);
+          word-break: break-all;
+        }
+      }
     }
 
     img {
       width: 50%;
       height: 100%;
 
-      
       object-fit: contain;
 
       background: url("../../UI/assets/img/circle.jpg");

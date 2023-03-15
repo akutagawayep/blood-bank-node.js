@@ -80,11 +80,7 @@ export const donorRoutes = [
     element: <InfoPage />,
     title: "Информация",
   },
-  {
-    path: DONATION_ROUTE,
-    element: <PostPage propsrole="донор" />,
-    title: "Сдать кровь",
-  },
+
 
   {
     path: ALL_PATIENTS,
@@ -98,6 +94,10 @@ export const publicRoutes = [
     path: MAIN_ROUTE,
     element: <MainPage />,
     title: "Главная",
+  },  {
+    path: DONATION_ROUTE,
+    element: <PostPage propsrole="донор" />,
+    title: "Сдать кровь",
   },
   {
     path: INFO_ROUTE,

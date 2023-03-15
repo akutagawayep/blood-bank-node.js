@@ -80,7 +80,7 @@ class UserController {
       const users = await userService.getAllUsers();
       return res.json(users);
     } catch (e) {
-      next(e);
+    console.log(e);
     }
   }
 }

@@ -3,6 +3,7 @@ import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
 import { API_URL } from "../http/index.js";
 import AuthService from "../services/AuthService.js";
+import PostService from "../services/PostService.js";
 
 export default class Store {
   user = {};
@@ -31,12 +32,12 @@ export default class Store {
       localStorage.setItem("token", res.data.accessToken);
       this.setAuth(true);
       this.setUser(res.data.user);
-      toast.success("вы успешно зарегестрированы",{theme:"dark"});
+      toast.success("вы успешно зарегестрированы", { theme: "dark" });
       console.log(res.data.user);
     } catch (e) {
       e.response.status === 400
         ? toast.error(e.response.data.message)
-        : toast.warning("непредвиденная ошибка",{theme:"dark"});
+        : toast.warning("непредвиденная ошибка", { theme: "dark" });
       return "";
     }
   }
@@ -53,6 +54,19 @@ export default class Store {
       return "";
     }
   }
+
+  async post() {
+    try {
+      const res = await PostService.post();
+      console.log(res);
+    } catch (e) {
+      e.response.status === 400
+        ? toast.error(e.response.data.message)
+        : toast.warning("непредвиденная ошибка");
+      return "";
+    }
+  }
+
   async logout() {
     try {
       await AuthService.logout();
