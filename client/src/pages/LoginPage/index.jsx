@@ -80,7 +80,7 @@ const LoginPage = () => {
           </form>
           <Button
             title="Зайти"
-            onclick={() => store.login(email, password, role)}
+            onclick={() =>{ store.login(email, password, role)}}
           />
           <h3>нет аккаунта?</h3>
           <NavLink to={REGISTRATION_ROUTE}>

@@ -1,8 +1,13 @@
+import { toast } from "react-toastify";
 import $api from "../http";
 
 export default class AuthService {
   static async login(email, password, role) {
-    return $api.post("/login", { email, password, role }).then(res=>console.log(res.data));
+
+    const data = await $api.post("/login", { email, password, role });
+    console.log(data);
+    toast("вы успешно зашли в аккаунт", { theme: "dark" })
+    return data;
   }
   static async registration(email, password, role) {
     return $api.post("/registration", { email, password, role });

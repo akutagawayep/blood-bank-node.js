@@ -3,6 +3,7 @@ import Sidebar from "./components/sidebar";
 import { observer } from "mobx-react-lite";
 import "./App.css";
 import RoutesComp from "./components/routesComp";
+import { ToastContainer } from "react-toastify";
 import { Context } from ".";
 
 const App = () => {
@@ -19,10 +20,10 @@ const App = () => {
   }
 
   return (
-    <React.Fragment>
+    <ToastContainer>
       <Sidebar />
       <RoutesComp />
-    </React.Fragment>
+    </ToastContainer>
   );
 };
 
