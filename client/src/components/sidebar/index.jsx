@@ -6,6 +6,7 @@ import { Context } from "../..";
 import {
   clinicsRoutes,
   donorRoutes,
+  isntAuthRoutes,
   patientRoutes,
   publicRoutes,
 } from "../../routes/routes";
@@ -33,13 +34,13 @@ const Sidebar = () => {
   const routes = () => {
     switch (store.user.role) {
       case "донор":
-        return donorRoutes.map(({ path, key, title }) => (
+        return donorRoutes.map(({ path, title }) => (
           <>
             <NavLink
               className={({ isActive }) =>
                 isActive ? "active navlink" : "navlink"
               }
-              key={key}
+              key={path}
               to={path}
             >
               {title}
@@ -48,13 +49,13 @@ const Sidebar = () => {
           </>
         ));
       case "пациент":
-        return patientRoutes.map(({ path, key, title }) => (
+        return patientRoutes.map(({ path, title }) => (
           <>
             <NavLink
               className={({ isActive }) =>
                 isActive ? "active navlink" : "navlink"
               }
-              key={key}
+              key={path}
               to={path}
             >
               {title}
@@ -63,28 +64,13 @@ const Sidebar = () => {
           </>
         ));
       case "доктор":
-        return clinicsRoutes.map(({ path, key, title }) => (
+        return clinicsRoutes.map(({ path, element, title }) => (
           <>
             <NavLink
               className={({ isActive }) =>
                 isActive ? "active navlink" : "navlink"
               }
-              key={key}
-              to={path}
-            >
-              {title}
-            </NavLink>
-            <Hr />
-          </>
-        ));
-      default:
-        return publicRoutes.map(({ path, key, title }) => (
-          <>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "active navlink" : "navlink"
-              }
-              key={key}
+              key={element}
               to={path}
             >
               {title}
@@ -106,15 +92,29 @@ const Sidebar = () => {
             <div className={classesIcon.join(" ")} onClick={open}>
               <span></span>
             </div>
+            {publicRoutes.map(({ path, title }) => (
+              <>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active navlink" : "navlink"
+                  }
+                  key={path}
+                  to={path}
+                >
+                  {title}
+                </NavLink>
+                <Hr />
+              </>
+            ))}
             {store.isAuth
               ? routes()
-              : publicRoutes.map(({ path, key, title }) => (
+              : isntAuthRoutes.map(({ path, title }) => (
                   <>
                     <NavLink
                       className={({ isActive }) =>
                         isActive ? "active navlink" : "navlink"
                       }
-                      key={key}
+                      key={path}
                       to={path}
                     >
                       {title}

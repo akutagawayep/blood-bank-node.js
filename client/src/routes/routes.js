@@ -19,69 +19,45 @@ import {
 
 export const clinicsRoutes = [
   {
-    path: MAIN_ROUTE,
-
-    element: <MainPage />,
-    title: "Главная",
-  },
-  {
-    path: INFO_ROUTE,
-    element: <InfoPage />,
-    title: "Информация",
-  },
-  {
     path: ALL_DONORS,
-    element: <AllPatientsPage role="донор" />,
+    element: <AllPatientsPage propsrole="донор" />,
+    id:1,
     title: "Доноры",
   },
   {
     path: ALL_PATIENTS,
-    element: <AllPatientsPage role="пациент" />,
+    element: <AllPatientsPage propsrole="пациент" />,
+    id:2,
     title: "Пациенты",
   },
 
   {
     path: ALL_USERS,
     element: <AllUsersPage />,
+    id:3,
     title: "Пользователи",
   },
 ];
 
 export const patientRoutes = [
   {
-    path: MAIN_ROUTE,
-    element: <MainPage />,
-    title: "Главная",
-  },
-  {
-    element: <InfoPage />,
-    title: "Информация",
-  },
-  {
     path: PATIENTREQ_ROUTE,
-    element: <PostPage propsrole="пациент" />,
+    element: <PostPage role="пациент" />,
     title: "Получить кровь",
   },
   {
     path: ALL_DONORS,
-    element: <AllPatientsPage role="доктор" />,
+    element: <AllPatientsPage propsrole="доктор" />,
     title: "Доноры",
   },
 ];
 
 export const donorRoutes = [
   {
-    path: MAIN_ROUTE,
-    element: <MainPage />,
-    title: "Главная",
+    path: DONATION_ROUTE,
+    element: <PostPage role="донор" />,
+    title: "Сдать кровь",
   },
-  {
-    path: INFO_ROUTE,
-    element: <InfoPage />,
-    title: "Информация",
-  },
-
-
   {
     path: ALL_PATIENTS,
     element: <AllPatientsPage role="пациент" />,
@@ -94,16 +70,14 @@ export const publicRoutes = [
     path: MAIN_ROUTE,
     element: <MainPage />,
     title: "Главная",
-  },  {
-    path: DONATION_ROUTE,
-    element: <PostPage propsrole="донор" />,
-    title: "Сдать кровь",
   },
   {
     path: INFO_ROUTE,
     element: <InfoPage />,
     title: "Информация",
   },
+];
+export const isntAuthRoutes = [
   {
     path: REGISTRATION_ROUTE,
     element: <RegistrationPage />,

@@ -16,20 +16,20 @@ const RoutesComp = () => {
   const routes = () => {
     switch (store.user.role) {
       case "донор":
-        return donorRoutes.map(({ path, key, element }) => (
-          <Route key={key} path={path} element={element} />
+        return donorRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
         ));
       case "пациент":
-        return patientRoutes.map(({ path, key, element }) => (
-          <Route key={key} path={path} element={element} />
+        return patientRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
         ));
       case "доктор":
-        return clinicsRoutes.map(({ path, key, element }) => (
-          <Route key={key} path={path} element={element} />
+        return clinicsRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
         ));
       default:
-        return publicRoutes.map(({ path, key, element }) => (
-          <Route key={key} path={path} element={element} />
+        return publicRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
         ));
     }
   };
@@ -38,8 +38,8 @@ const RoutesComp = () => {
     <Routes>
       {store.isAuth
         ? routes()
-        : publicRoutes.map(({ path, key, element }) => (
-            <Route key={key} path={path} element={element} />
+        : publicRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
           ))}
       <Route path="*" element={<Navigate to={MAIN_ROUTE} />} />
     </Routes>

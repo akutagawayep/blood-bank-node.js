@@ -55,15 +55,14 @@ export default class Store {
     }
   }
 
-  async post() {
-    try {
-      const res = await PostService.post();
-      console.log(res);
-    } catch (e) {
-      e.response.status === 400
-        ? toast.error(e.response.data.message)
-        : toast.warning("непредвиденная ошибка");
-      return "";
+  async post(payload) {
+    const res = await PostService.post(payload);
+    if (res.status === 200) {
+      toast.success("Вы успешно записаль на прием для сдачи крови!");
+    } else if (res.status === 400) {
+      toast.error(res.data.message);
+    } else {
+      toast.warning("непредвиденная ошибка");
     }
   }
 
@@ -73,6 +72,7 @@ export default class Store {
       localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser();
+      toast.success("Вы успешно вышли из аккаунта!")
     } catch (e) {
       console.log(e.res?.data?.message);
     }

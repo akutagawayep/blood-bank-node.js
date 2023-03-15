@@ -161,7 +161,21 @@ const PostPage = ({ role }) => {
               <label htmlFor="4">AB</label>
             </label>
           </form>
-          <Button title="сдать" onclick={() => store.post(post)} />
+          <Button
+            title="сдать"
+            onclick={() =>
+              store.post({
+                email: post.email,
+                name: post.name,
+                type: post.type,
+                number: post.number,
+                role: post.role,
+                isActive: post.isActive,
+                city: post.city,
+                date: post.date,
+              })
+            }
+          />
         </div>
         <img src={donation} alt="к сожалению не удалось загрузить картинку" />
       </div>
