@@ -26,6 +26,8 @@ const AllPatientsPage = ({role}) => {
             number={post.number}
             role={post.role}
             type={post.type}
+            iaActive={post.isActive}
+            city={post.city}
             key={post.number}
           />
         ) : (

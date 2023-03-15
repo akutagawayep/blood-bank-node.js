@@ -11,15 +11,16 @@ class postController {
           ApiError.BadRequest("Ошибка при валидации", errors.array())
         );
       }
-      const { email, name, type, number, role, active, key } = req.body;
+      const { email, name, type, number, role, isActive, city, date } = req.body;
       const postData = await postService.donationPostservice(
         email,
-        name,
+        name, 
         type,
         number,
         role,
-        active,
-        key
+        isActive,
+        city,
+        date
       );
       return res.json(postData);
     } catch (e) {

@@ -3,7 +3,7 @@ import Sidebar from "./components/sidebar";
 import { observer } from "mobx-react-lite";
 import "./App.css";
 import RoutesComp from "./components/routesComp";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import { Context } from ".";
 
 const App = () => {
@@ -20,10 +20,21 @@ const App = () => {
   }
 
   return (
-    <ToastContainer>
+    <>
       <Sidebar />
       <RoutesComp />
-    </ToastContainer>
+      <ToastContainer
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        position="top-left"
+        autoClose={true}
+        closeButton={false}
+        hideProgressBar={false}
+        newestOnTop={true}
+        role="alert"
+      />
+    </>
   );
 };
 

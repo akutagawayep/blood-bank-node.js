@@ -8,6 +8,7 @@ import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import { NavLink } from "react-router-dom";
 import { REGISTRATION_ROUTE } from "../../routes/routesData";
+import { ToastContainer } from "react-toastify";
 const LoginPage = () => {
   const [email, setEmail] = useState("@gmail.com");
   const [password, setPassword] = useState("");
@@ -16,7 +17,9 @@ const LoginPage = () => {
   const { store } = useContext(Context);
 
   return (
+  
     <div className={s.root}>
+  
       <div className={s.main}>
         <div className={s.container}>
           <h1>ЛОГИН</h1>
@@ -80,11 +83,12 @@ const LoginPage = () => {
           </form>
           <Button
             title="Зайти"
-            onclick={() =>{ store.login(email, password, role)}}
+            onclick={() => {
+              store.login(email, password, role);
+            }}
           />
           <h3>нет аккаунта?</h3>
           <NavLink to={REGISTRATION_ROUTE}>
-            {" "}
             <Button title="Зарегистрироваться" />
           </NavLink>
         </div>

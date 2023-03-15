@@ -5,9 +5,8 @@
 
   transition: all 0.7s;
 
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   user-select: none;
-  
 }
 
 :root {
@@ -42,5 +41,62 @@
   text-decoration: none;
 }
 .active {
-  color: var(--darkGreen  ); 
+  color: var(--darkGreen);
+}
+
+.Toastify__toast-container {
+  width: 20%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+
+  position: fixed;
+  top: 70px;
+  left: 10px;
+}
+.Toastify__toast {
+  width: 15rem;
+  padding: 15px;
+
+  position: absolute;
+
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  border: 2px solid #224190;
+  border-radius: 1rem;
+  
+  
+  background: white;
+  z-index: 10;
+}
+
+.Toastify__toast-body {
+  width: 13rem;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  text-align: center;
+}
+
+.Toastify__toast-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.Toastify__close-button {
+  width: 1rem;
+  height: 1rem;
+
+  border: 0;
+  background: transparent;
+}
+.Toastify__progress-bar-theme--dark {
+  --toastify-color-progress-dark: var(--black);
 }

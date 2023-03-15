@@ -16,6 +16,7 @@ $api.interceptors.response.use(
   (config) => {
     return config;
   },
+  
   async (e) => {
     const origRequest = e.config;
     origRequest._isRetry = true;

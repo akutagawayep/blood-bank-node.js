@@ -6,8 +6,10 @@ const PostSchema = new Schema({
   type: { type: String, required: true },
   number: { type: String, required: true },
   role: { type: String, required: true },
-  active: { type: Boolean, default: false },
-  key: { type: String, required: true },
+  city: { type: String, required: true },
+  isActive: { type: Boolean, default: false },
+  date: { type: String, unique: false, required: true },
 });
- 
+
 module.exports = model("Post", PostSchema);
+   

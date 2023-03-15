@@ -43,6 +43,7 @@ class UserService {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
+      
       throw ApiError.BadRequest("Пользователь с такой почтой не найден");
     }
 

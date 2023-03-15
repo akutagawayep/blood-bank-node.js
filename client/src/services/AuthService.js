@@ -3,10 +3,8 @@ import $api from "../http";
 
 export default class AuthService {
   static async login(email, password, role) {
-
     const data = await $api.post("/login", { email, password, role });
     console.log(data);
-    toast("вы успешно зашли в аккаунт", { theme: "dark" })
     return data;
   }
   static async registration(email, password, role) {
