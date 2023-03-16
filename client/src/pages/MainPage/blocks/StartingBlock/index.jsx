@@ -17,7 +17,7 @@ const StartingBlock = () => {
         <Hr />
         <p>ДЛЯ ЛУЧШЕЙ ЖИЗНИ</p>
         {store.isAuth ? (
-          <NavLink to={DONATION_ROUTE}>
+          <NavLink to={store.isAuth?DONATION_ROUTE:LOGIN_ROUTE}>
             <Button title={"Сдать кровь"} style={{ fontSize: "2em" }} />
           </NavLink>
         ) : (

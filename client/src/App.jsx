@@ -9,12 +9,6 @@ import { Context } from ".";
 const App = () => {
   const { store } = useContext(Context);
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      store.checkAuth();
-    }
-  }, []);
-
   if (store.isLoading) {
     return <h1>loading</h1>;
   }

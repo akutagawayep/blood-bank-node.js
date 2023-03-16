@@ -5,6 +5,7 @@ import { Context } from "../..";
 import {
   clinicsRoutes,
   donorRoutes,
+  isntAuthRoutes,
   patientRoutes,
   publicRoutes,
 } from "../../routes/routes.js";
@@ -28,7 +29,7 @@ const RoutesComp = () => {
           <Route key={path} path={path} element={element} />
         ));
       default:
-        return publicRoutes.map(({ path, element }) => (
+        return isntAuthRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ));
     }
@@ -36,11 +37,14 @@ const RoutesComp = () => {
 
   return (
     <Routes>
-      {store.isAuth
+      {store.user?.role
         ? routes()
-        : publicRoutes.map(({ path, element }) => (
+        : isntAuthRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}
+      {publicRoutes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+      ))}
       <Route path="*" element={<Navigate to={MAIN_ROUTE} />} />
     </Routes>
   );

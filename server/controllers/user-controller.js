@@ -81,6 +81,7 @@ class UserController {
       return res.json(users);
     } catch (e) {
     console.log(e);
+    next(e)
     }
   }
 }

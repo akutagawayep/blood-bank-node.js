@@ -9,8 +9,9 @@ import Form from "react-bootstrap/Form";
 import { Context } from "../..";
 
 const PostPage = ({ role }) => {
+  const { store } = useContext(Context);
   const [post, setPost] = useState({
-    email: "",
+    email: store.user?.email ? store.user?.email : "",
     name: "Akhmedova Jasmina",
     type: "",
     number: "",
@@ -19,8 +20,6 @@ const PostPage = ({ role }) => {
     city: "",
     date: `${new Date(Date.now()).toLocaleDateString()}`,
   });
-
-  const { store } = useContext(Context);
 
   return (
     <div className={s.root}>

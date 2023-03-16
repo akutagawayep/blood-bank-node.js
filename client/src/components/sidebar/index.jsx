@@ -32,7 +32,7 @@ const Sidebar = () => {
   }
 
   const routes = () => {
-    switch (store.user.role) {
+    switch (store.user?.role) {
       case "донор":
         return donorRoutes.map(({ path, title }) => (
           <>
@@ -70,7 +70,22 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 isActive ? "active navlink" : "navlink"
               }
-              key={element}
+              key={title}
+              to={path}
+            >
+              {title}
+            </NavLink>
+            <Hr />
+          </>
+        ));
+      default:
+        return isntAuthRoutes.map(({ path, title }) => (
+          <>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "active navlink" : "navlink"
+              }
+              key={path}
               to={path}
             >
               {title}
@@ -106,7 +121,8 @@ const Sidebar = () => {
                 <Hr />
               </>
             ))}
-            {store.isAuth
+
+            {store.user?.role
               ? routes()
               : isntAuthRoutes.map(({ path, title }) => (
                   <>

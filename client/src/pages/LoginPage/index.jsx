@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
 import Input from "../../UI/Input";
 import s from "./login.module.scss";
-import { AiFillMail, AiFillLock } from "react-icons/ai";
+import { AiFillMail, AiFillLock, AiFillPoundCircle, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import login from "../../UI/assets/img/login.png";
 import Button from "../../UI/Button";
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
-import { NavLink } from "react-router-dom";
-import { REGISTRATION_ROUTE } from "../../routes/routesData";
-import { ToastContainer } from "react-toastify";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { INFO_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from "../../routes/routesData";
 const LoginPage = () => {
   const [email, setEmail] = useState("@gmail.com");
   const [password, setPassword] = useState("");
+  const [type,setType]=useState(false)
   const [role, setRole] = useState("");
 
   const { store } = useContext(Context);
@@ -37,12 +37,12 @@ const LoginPage = () => {
           <Input
             logo={<AiFillLock />}
             child={
-              <input
-                type="text"
+              <><input
+                type={type?"text":"password"}
                 value={password}
                 placeholder="Пароль"
                 onChange={(e) => setPassword(e.target.value)}
-              />
+              /> <button onClick={()=>setType(!type)}>{type?<AiFillEye/>:<AiFillEyeInvisible/>}</button></>
             }
           />
           <h3> Я...</h3>
@@ -81,10 +81,11 @@ const LoginPage = () => {
               <label htmlFor="clinic">Доктор</label>
             </label>
           </form>
-          <Button
+      <Button
             title="Зайти"
             onclick={() => {
-              store.login(email, password, role);
+             return store.login(email, password, role)  
+           
             }}
           />
           <h3>нет аккаунта?</h3>

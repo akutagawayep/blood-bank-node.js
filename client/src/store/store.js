@@ -9,6 +9,7 @@ export default class Store {
   user = {};
   isAuth = false;
   isLoading = false;
+  posts = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -21,6 +22,10 @@ export default class Store {
     this.user = user;
   }
 
+  setPosts(payload) {
+    this.posts = payload?.Proxy?.target;
+  }
+
   setLoading(bool) {
     this.isLoading = bool;
   }
@@ -29,7 +34,6 @@ export default class Store {
     try {
       const res = await AuthService.login(email, password, role);
       console.log(res);
-      localStorage.setItem("token", res.data.accessToken);
       this.setAuth(true);
       this.setUser(res.data.user);
       toast.success("вы успешно зарегестрированы", { theme: "dark" });
@@ -44,7 +48,6 @@ export default class Store {
   async registration(email, password, role) {
     try {
       const res = await AuthService.registration(email, password, role);
-      localStorage.setItem("token", res.data.accessToken);
       this.setAuth(true);
       this.setUser(res.data.user);
     } catch (e) {
@@ -58,7 +61,13 @@ export default class Store {
   async post(payload) {
     const res = await PostService.post(payload);
     if (res.status === 200) {
-      toast.success("Вы успешно записаль на прием для сдачи крови!");
+      const roleWord =
+        payload.role === "донор"
+          ? "сдачи"
+          : payload.role === "пациент"
+          ? "получения"
+          : "";
+      toast.success("Вы успешно записались на прием для " + roleWord + " крови!");
     } else if (res.status === 400) {
       toast.error(res.data.message);
     } else {
@@ -69,10 +78,10 @@ export default class Store {
   async logout() {
     try {
       await AuthService.logout();
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser();
-      toast.success("Вы успешно вышли из аккаунта!")
+      toast.success("Вы успешно вышли из аккаунта!");
     } catch (e) {
       console.log(e.res?.data?.message);
     }
@@ -84,7 +93,7 @@ export default class Store {
       const res = await axios.get(`${API_URL}/refresh`, {
         withCredentials: true,
       });
-      localStorage.setItem("token", res.data?.accessToken);
+      // localStorage.setItem("token", res.data?.accessToken);
       this.setAuth(true);
       this.setUser(res.data?.user);
     } catch (e) {

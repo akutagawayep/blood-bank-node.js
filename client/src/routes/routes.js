@@ -17,28 +17,6 @@ import {
   ALL_DONORS,
 } from "./routesData";
 
-export const clinicsRoutes = [
-  {
-    path: ALL_DONORS,
-    element: <AllPatientsPage propsrole="донор" />,
-    id:1,
-    title: "Доноры",
-  },
-  {
-    path: ALL_PATIENTS,
-    element: <AllPatientsPage propsrole="пациент" />,
-    id:2,
-    title: "Пациенты",
-  },
-
-  {
-    path: ALL_USERS,
-    element: <AllUsersPage />,
-    id:3,
-    title: "Пользователи",
-  },
-];
-
 export const patientRoutes = [
   {
     path: PATIENTREQ_ROUTE,
@@ -47,7 +25,7 @@ export const patientRoutes = [
   },
   {
     path: ALL_DONORS,
-    element: <AllPatientsPage propsrole="доктор" />,
+    element: <AllPatientsPage role="доктор" />,
     title: "Доноры",
   },
 ];
@@ -62,6 +40,15 @@ export const donorRoutes = [
     path: ALL_PATIENTS,
     element: <AllPatientsPage role="пациент" />,
     title: "Пациенты",
+  },
+];
+export const clinicsRoutes = [
+  ...patientRoutes,
+  ...donorRoutes,
+  {
+    path: ALL_USERS,
+    element: <AllUsersPage />,
+    title: "Пользователи",
   },
 ];
 

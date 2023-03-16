@@ -4,7 +4,7 @@ const {
   login,
   logout,
   activate,
-  refresh,
+  // refresh,
   getUsers,
 } = require("../controllers/user-controller");
 const { donationPost, getPosts } = require("../controllers/post-controller");
@@ -22,7 +22,7 @@ router.post(
 router.post("/login", login);
 router.post("/logout", logout);
 router.get("/activate/:link", activate);
-router.get("/refresh", refresh);
+// router.get("/refresh", refresh);
 router.get("/users", getUsers);
 router.post(
   "/post",
