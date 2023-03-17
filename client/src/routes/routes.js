@@ -25,7 +25,7 @@ export const patientRoutes = [
   },
   {
     path: ALL_DONORS,
-    element: <AllPatientsPage role="доктор" />,
+    element: <AllPatientsPage role="донор" />,
     title: "Доноры",
   },
 ];

@@ -7,5 +7,4 @@ export default class PostService {
   static async post(payload) {
     return $api.post("/post", payload);
   }
-
 }

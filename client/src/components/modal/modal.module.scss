@@ -1,0 +1,49 @@
+.root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background-color: rgba(0, 0, 0, 0.594);
+
+	.inner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 50px;
+
+		padding: 50px;
+		width: 40%;
+
+		border-top: 5px solid var(--orange);
+
+		background-color: var(--lightBg);
+
+		h3 {
+			font-size: 30px;
+		}
+
+		.btns {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 20px;
+
+			button {
+				padding: 5px 30px;
+
+				border: 1px solid var(--orange);
+				border-radius: 5px;
+				cursor: pointer;
+
+				color: var(--textColor);
+			}
+		}
+	}
+}

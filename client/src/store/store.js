@@ -8,8 +8,7 @@ import PostService from "../services/PostService.js";
 export default class Store {
   user = {};
   isAuth = false;
-  isLoading = false;
-  posts = [];
+  isLoading = false;  
 
   constructor() {
     makeAutoObservable(this);
@@ -20,10 +19,6 @@ export default class Store {
   }
   setUser(user) {
     this.user = user;
-  }
-
-  setPosts(payload) {
-    this.posts = payload?.Proxy?.target;
   }
 
   setLoading(bool) {
@@ -67,7 +62,9 @@ export default class Store {
           : payload.role === "пациент"
           ? "получения"
           : "";
-      toast.success("Вы успешно записались на прием для " + roleWord + " крови!");
+      toast.success(
+        "Вы успешно записались на прием для " + roleWord + " крови!"
+      );
     } else if (res.status === 400) {
       toast.error(res.data.message);
     } else {
