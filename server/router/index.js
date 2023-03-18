@@ -27,10 +27,9 @@ router.get("/users", getUsers);
 router.post(
   "/post",
   body("email").isEmail(),
-  body("number").isLength({ min: 13, max: 13 }),
   donationPost
 );
 router.get("/getPosts", getPosts);
 
-
+ 
 module.exports = router;

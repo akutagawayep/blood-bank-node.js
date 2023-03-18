@@ -64,13 +64,13 @@ const Sidebar = () => {
           </>
         ));
       case "доктор":
-        return clinicsRoutes.map(({ path, element, title }) => (
+        return clinicsRoutes.map(({ path, title }) => (
           <>
             <NavLink
               className={({ isActive }) =>
                 isActive ? "active navlink" : "navlink"
               }
-              key={title}
+              key={ title }
               to={path}
             >
               {title}
@@ -130,7 +130,7 @@ const Sidebar = () => {
                       className={({ isActive }) =>
                         isActive ? "active navlink" : "navlink"
                       }
-                      key={path}
+                      key={title}
                       to={path}
                     >
                       {title}

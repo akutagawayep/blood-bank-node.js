@@ -4,12 +4,13 @@ import Modal from "../../components/modal";
 import PostService from "../../services/PostService";
 import Button from "../../UI/Button";
 import s from "./allPatientsPage.module.scss";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 const AllPatientsPage = ({ role }) => {
   const [patients, setPatients] = useState([]);
 
   const [isVisible, setIsvisible] = useState(false);
+  const [type, setType] = useState("");
   const [isId, setIsId] = useState(0);
 
   const getUsers = async () => {
@@ -25,27 +26,67 @@ const AllPatientsPage = ({ role }) => {
   return (
     <div className={s.root}>
       <Button title={`Все ${role}ы`} onclick={getUsers} />
-      {patients.map((post) =>
-        post.role === role ? (
-          <>
-            {/* {setIsId(post._id)} */}
-            <Card
-              email={post.email}
-              name={post.name}
-              number={post.number}
-              role={post.role}
-              type={post.type}
-              iaActive={post.isActive}
-              city={post.city}
-              key={uuid()}
-              onclick={() => setIsvisible(!isVisible)}
-            />
-          </>
-        ) : (
-          ""
-        )
-      )}
-      <Modal setIsvisible={setIsvisible} state={isVisible} id={isId} />
+      <Button
+        title={`Все ${role}ы  группы крови О`}
+        onclick={() => setType("O")}
+      />
+      <Button
+        title={`Все ${role}ы  группы крови А`}
+        onclick={() => setType("A")}
+      />
+      <Button
+        title={`Все ${role}ы  группы крови В`}
+        onclick={() => setType("B")}
+      />
+      <Button
+        title={`Все ${role}ы  группы крови АВ`}
+        onclick={() => setType("AB")}
+      />
+
+      {type !== ""
+        ? patients.map((post) =>
+            post.role === role && post.type === type ? (
+              <>
+                {setIsId(post._id)}
+                {console.log(isId)}
+                <Card
+                  email={post.email}
+                  name={post.name}
+                  number={post.number}
+                  role={post.role}
+                  type={post.type}
+                  iaActive={post.isActive}
+                  city={post.city}
+                  key={uuid()}
+                  onclick={() => setIsvisible(!isVisible)}
+                />
+              </>
+            ) : (
+              ""
+            )
+          )
+        : patients.map((post) =>
+            post.role === role ? (
+              <>
+                {/* {setIsId(post._id)} */}
+                <Card
+                  email={post.email}
+                  name={post.name}
+                  number={post.number}
+                  role={post.role}
+                  type={post.type}
+                  iaActive={post.isActive}
+                  city={post.city}
+                  key={uuid()}
+                  onclick={() => setIsvisible(!isVisible)}
+                />
+              </>
+            ) : (
+              ""
+            )
+          )}
+
+      {/* <Modal setIsvisible={setIsvisible} state={isVisible} id={isId} /> */}
     </div>
   );
 };

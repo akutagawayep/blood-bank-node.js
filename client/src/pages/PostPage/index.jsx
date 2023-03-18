@@ -7,6 +7,9 @@ import donation from "../../UI/assets/img/donation.png";
 import Button from "../../UI/Button";
 import Form from "react-bootstrap/Form";
 import { Context } from "../..";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { MAIN_ROUTE } from "../../routes/routesData";
 
 const PostPage = ({ role }) => {
   const { store } = useContext(Context);
@@ -20,6 +23,7 @@ const PostPage = ({ role }) => {
     city: "",
     date: `${new Date(Date.now()).toLocaleDateString()}`,
   });
+  const navigate = useNavigate();
 
   return (
     <div className={s.root}>
@@ -80,7 +84,9 @@ const PostPage = ({ role }) => {
             className={s.select}
             aria-label="Default select example"
           >
-            <option className={s.selectitem}>Выберите клинику</option>
+            <option className={s.selectitem} value={null}>
+              Выберите клинику
+            </option>
             <option
               className={s.selectitem}
               value="улица Тошкент халка автомобил йули (ТКАД), Юнусабадский район, Ташкент"
@@ -160,19 +166,29 @@ const PostPage = ({ role }) => {
               <label htmlFor="4">AB</label>
             </label>
           </form>
+
           <Button
             title="сдать"
             onclick={() =>
-              store.post({
-                email: post.email,
-                name: post.name,
-                type: post.type,
-                number: post.number,
-                role: post.role,
-                isActive: post.isActive,
-                city: post.city,
-                date: post.date,
-              })
+              post.number.length === 13 && post.city ? (
+                <>
+                  {store.post({
+                    email: post.email,
+                    name: post.name,
+                    type: post.type,
+                    number: post.number,
+                    role: post.role,
+                    isActive: post.isActive,
+                    city: post.city,
+                    date: post.date,
+                  })}
+                  {navigate(MAIN_ROUTE)}
+                </>
+              ) : post.number.length !== 13 ? (
+                toast.warn("Заполните поле для номера")
+              ) : (
+                toast.warn("непредвиденная ошибка")
+              )
             }
           />
         </div>

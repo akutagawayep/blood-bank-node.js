@@ -7,7 +7,6 @@ const Modal = ({ state, id, setIsvisible }) => {
 
   const del = () => {
     axios.delete("http://localhost:3001/tasks/" + id);
-    
     setIsvisible(false);
   };
 

@@ -34,6 +34,7 @@ export default class Store {
       toast.success("вы успешно зарегестрированы", { theme: "dark" });
       console.log(res.data.user);
     } catch (e) {
+      console.log(e);
       e.response.status === 400
         ? toast.error(e.response.data.message)
         : toast.warning("непредвиденная ошибка", { theme: "dark" });
