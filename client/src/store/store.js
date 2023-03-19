@@ -8,7 +8,7 @@ import PostService from "../services/PostService.js";
 export default class Store {
   user = {};
   isAuth = false;
-  isLoading = false;  
+  isLoading = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -27,22 +27,23 @@ export default class Store {
 
   async login(email, password, role) {
     try {
+      this.setLoading(true);
       const res = await AuthService.login(email, password, role);
-      console.log(res);
       this.setAuth(true);
       this.setUser(res.data.user);
       toast.success("вы успешно зарегестрированы", { theme: "dark" });
-      console.log(res.data.user);
     } catch (e) {
-      console.log(e);
       e.response.status === 400
         ? toast.error(e.response.data.message)
         : toast.warning("непредвиденная ошибка", { theme: "dark" });
       return "";
+    } finally {
+      this.setLoading(false);
     }
   }
   async registration(email, password, role) {
     try {
+      this.setLoading(true);
       const res = await AuthService.registration(email, password, role);
       this.setAuth(true);
       this.setUser(res.data.user);
@@ -51,10 +52,12 @@ export default class Store {
         ? toast.error(e.response.data.message)
         : toast.warning("непредвиденная ошибка");
       return "";
+    } finally {
+      this.setLoading(false);
     }
   }
-
   async post(payload) {
+    this.setLoading(true);
     const res = await PostService.post(payload);
     if (res.status === 200) {
       const roleWord =
@@ -71,17 +74,21 @@ export default class Store {
     } else {
       toast.warning("непредвиденная ошибка");
     }
+    this.setLoading(false);
   }
 
   async logout() {
     try {
+      this.setLoading(true);
       await AuthService.logout();
       // localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser();
       toast.success("Вы успешно вышли из аккаунта!");
     } catch (e) {
-      console.log(e.res?.data?.message);
+      toast.warn(e);
+    } finally {
+      this.setLoading(false);
     }
   }
 
@@ -98,6 +105,24 @@ export default class Store {
       e.response.status === 400
         ? toast.warn(e.response.data.message)
         : toast.warning("непредвиденная ошибка");
+      return "";
+    } finally {
+      this.setLoading(false);
+    }
+  }
+  async delete(id) {
+    try {
+      this.setLoading(true);
+      const res = await PostService.delete(id);
+      console.log(res);
+
+      res.data.deleted===true
+        ? toast.success("вы удалили пост")
+        : toast.warning("что-то пошло не так");
+    } catch (e) {
+      e.response.status === 400
+        ? toast.error(e.response.data.message)
+        : toast.warning("непредвиденная ошибка", { theme: "dark" });
       return "";
     } finally {
       this.setLoading(false);

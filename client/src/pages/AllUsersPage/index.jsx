@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import Card from "../../components/card";
 import UserService from "../../services/UserService";
 import Button from "../../UI/Button";
@@ -10,10 +11,10 @@ const AllUsersPage = () => {
   const getUsers = async () => {
     try {
       const res = await UserService.fetchusers();
-      console.log(res.data);
+     
       setUsers(res.data)
     } catch (e) {
-      console.log(e);
+      toast(e);
     }
   };
   return (

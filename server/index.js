@@ -23,7 +23,6 @@ app.use(errorMiddleware);
 const start = async () => {
   try {
     await mongoose.connect(process.env.DB_URL);
-
     app.listen(PORT, console.log("app is listening " + PORT));
   } catch (e) {
     console.log(e);
@@ -31,4 +30,4 @@ const start = async () => {
 };
 
 start(); 
- 
+  

@@ -5,12 +5,13 @@ import "./App.css";
 import RoutesComp from "./components/routesComp";
 import { ToastContainer} from "react-toastify";
 import { Context } from ".";
+import Loader from "./components/loader";
 
 const App = () => {
   const { store } = useContext(Context);
 
   if (store.isLoading) {
-    return <h1>loading</h1>;
+    return <Loader/>;
   }
 
   return (

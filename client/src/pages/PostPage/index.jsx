@@ -10,8 +10,11 @@ import { Context } from "../..";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { MAIN_ROUTE } from "../../routes/routesData";
+import ShortUniqueId from "short-unique-id"
+// import {v4 as uuid} from "uuid"
 
 const PostPage = ({ role }) => {
+  const uuid = new ShortUniqueId({length:7,dictionary:['0','1','2','3','4','5','6','7','8','9']})
   const { store } = useContext(Context);
   const [post, setPost] = useState({
     email: store.user?.email ? store.user?.email : "",
@@ -22,6 +25,7 @@ const PostPage = ({ role }) => {
     isActive: false,
     city: "",
     date: `${new Date(Date.now()).toLocaleDateString()}`,
+    uid: uuid(),
   });
   const navigate = useNavigate();
 
@@ -181,6 +185,7 @@ const PostPage = ({ role }) => {
                     isActive: post.isActive,
                     city: post.city,
                     date: post.date,
+                    uid: post.uid,
                   })}
                   {navigate(MAIN_ROUTE)}
                 </>

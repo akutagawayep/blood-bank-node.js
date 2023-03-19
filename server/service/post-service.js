@@ -1,6 +1,7 @@
 const PostModel = require("../models/post-model");
 
 const PostDto = require("../dtos/post-dto");
+const e = require("express");
 
 class PostService {
   async donationPostservice(
@@ -11,7 +12,8 @@ class PostService {
     role,
     isActive,
     city,
-    date
+    date,
+    uid
   ) {
     const post = await PostModel.create({
       email: email,
@@ -22,6 +24,7 @@ class PostService {
       isActive: isActive,
       city: city,
       date: date,
+      uid: uid,
     });
     const postDto = new PostDto(post);
 
@@ -33,6 +36,14 @@ class PostService {
   async getAllPosts() {
     const posts = await PostModel.find();
     return posts;
+  }
+  async delPost(id) {
+    try {
+      const res = await PostModel.findOneAndDelete({ uid: id }, {});
+      return res ? true : false;
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 

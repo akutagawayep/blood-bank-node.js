@@ -7,6 +7,7 @@ module.exports = class PostDto {
   city;
   isActive;
   date;
+  uid;
   id;
 
   constructor(model) {
@@ -18,6 +19,7 @@ module.exports = class PostDto {
     this.city = model.city;
     this.isActive = model.isActive;
     this.date = model.date;
+    this.uid = model.uid;
     this.id = model._id;
   }
 };

@@ -28,7 +28,6 @@ class TokenService {
       const userData = jwt.verify(token, `${process.env.JWT_REFRESH_TOKEN}`);
       return userData;
     } catch (e) {
-      console.log(e);
       return null;
     }
   }

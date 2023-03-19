@@ -7,6 +7,7 @@
 
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   user-select: none;
+
 }
 
 :root {
@@ -63,15 +64,13 @@
 
   position: absolute;
 
-
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
   border: 2px solid #224190;
   border-radius: 1rem;
-  
-  
+
   background: white;
   z-index: 10;
 }

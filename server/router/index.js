@@ -7,7 +7,7 @@ const {
   // refresh,
   getUsers,
 } = require("../controllers/user-controller");
-const { donationPost, getPosts } = require("../controllers/post-controller");
+const { donationPost, getPosts, delPost } = require("../controllers/post-controller");
 const authMiddleware = require("../middlewares/auth-middleware");
 const router = new Router();
 const { body } = require("express-validator");
@@ -24,12 +24,8 @@ router.post("/logout", logout);
 router.get("/activate/:link", activate);
 // router.get("/refresh", refresh);
 router.get("/users", getUsers);
-router.post(
-  "/post",
-  body("email").isEmail(),
-  donationPost
-);
+router.post("/post", body("email").isEmail(), donationPost);
 router.get("/getPosts", getPosts);
+router.delete("/post/del" ,delPost);
 
- 
 module.exports = router;

@@ -1,0 +1,83 @@
+@keyframes ldio-o2zb8o8ld89 {
+    0% { opacity: 1 }
+    100% { opacity: 0 }
+  }
+  
+  .ldio-o2zb8o8ld89 div {
+    left: 60px;
+    top: 48px;
+    position: absolute;
+    animation: ldio-o2zb8o8ld89 linear 1.36986301369863s infinite;
+    background: var(--grey);
+    width: 24px;
+    height: 48px;
+    border-radius: 12px / 24px;
+    transform-origin: 6px 52px;
+  }.ldio-o2zb8o8ld89 div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -1.2557077625570776s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -1.1415525114155252s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -1.0273972602739727s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.9132420091324202s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.7990867579908676s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.684931506849315s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.5707762557077626s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.4566210045662101s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.3424657534246575s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.22831050228310504s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.11415525114155252s;
+    background: var(--grey);
+  }.ldio-o2zb8o8ld89 div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+    background: var(--grey);
+  }
+  .loader {
+    min-width: 100%;
+    min-height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .ldio-o2zb8o8ld89 {
+    width: 1000px;
+    height: 1000px;
+    position: relative;
+    top: 45%;
+    left: 45%;
+    transform: translateX(45);
+    transform: translateY(25%);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+  }
+  .ldio-o2zb8o8ld89 div { box-sizing: content-box; }

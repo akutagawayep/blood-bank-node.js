@@ -1,12 +1,12 @@
-import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../..";
 import s from "./modal.module.scss";
 
-const Modal = ({ state, id, setIsvisible }) => {
-
-
+const Modal = ({ state, id, patients, setPatients, setIsvisible }) => {
+  const { store } = useContext(Context);
   const del = () => {
-    axios.delete("http://localhost:3001/tasks/" + id);
+    store.delete({uid:id});
+    setPatients(patients.filter((e) => e.uid !== id));
     setIsvisible(false);
   };
 

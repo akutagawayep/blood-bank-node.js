@@ -6,21 +6,23 @@ class postController {
   async donationPost(req, res, next) {
     try {
       const errors = validationResult(req);
-      if (!errors.isEmpty()) { 
+      if (!errors.isEmpty()) {
         return next(
           ApiError.BadRequest("Ошибка при валидации", errors.array())
         );
       }
-      const { email, name, type, number, role, isActive, city, date } = req.body;
+      const { email, name, type, number, role, isActive, city, date, uid } =
+        req.body;
       const postData = await postService.donationPostservice(
         email,
-        name, 
+        name,
         type,
         number,
         role,
         isActive,
         city,
-        date
+        date,
+        uid
       );
       return res.json(postData);
     } catch (e) {
@@ -36,6 +38,14 @@ class postController {
       next(e);
     }
   }
+  async delPost(req, res, next) {
+    try {
+      const { uid } = req.body;
+      const posts = await postService.delPost(uid);
+      return res.json((posts? { deleted: true } : { deleted: false }));
+    } catch (e) {
+      next(e);
+    }
+  }
 }
-
 module.exports = new postController();

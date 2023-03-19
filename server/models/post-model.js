@@ -9,6 +9,7 @@ const PostSchema = new Schema({
   city: { type: String, required: true },
   isActive: { type: Boolean, default: false },
   date: { type: String, unique: false, required: true },
+  uid: { type: Number, unique: true, required: true },
 });
 
 module.exports = model("Post", PostSchema);

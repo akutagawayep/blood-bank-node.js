@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const API_URL = `http://localhost:5000/api`;
 
@@ -7,11 +8,6 @@ const $api = axios.create({
   baseURL: API_URL,
 });
 
-// $api.interceptors.request.use((config) => {
-//   config.headers.Authorization = `Bearer${localStorage.getItem("token")}`;
-//   console.log(config);
-//   return config;
-// });
 $api.interceptors.response.use(
   (config) => {
     return config;
@@ -30,7 +26,7 @@ $api.interceptors.response.use(
 
         return $api.request(origRequest);
       } catch (e) {
-        console.log("НЕ АВТОРИЗОВАН");
+        toast("НЕ АВТОРИЗОВАН");
       }
     }
     throw e;
