@@ -11,7 +11,7 @@
 	
 	z-index: 10;
 
-	background-color: rgba(0, 0, 0, 0.594);
+	background-color: rgba(53, 48, 132, 0.527);
 
 	.inner {
 		display: flex;
@@ -23,9 +23,9 @@
 		padding: 50px;
 		width: 40%;
 
-		border-top: 5px solid var(--orange);
+		border-top: 5px solid var(--darkGreen);
 
-		background-color: var(--lightBg);
+		background-color: #fff;
 
 		h3 {
 			font-size: 30px;
@@ -40,7 +40,7 @@
 			button {
 				padding: 5px 30px;
 
-				border: 1px solid var(--orange);
+				border: 1px solid var(--darkGreen);
 				border-radius: 5px;
 				cursor: pointer;
 

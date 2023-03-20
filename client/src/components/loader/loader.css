@@ -7,6 +7,7 @@
     left: 60px;
     top: 48px;
     position: absolute;
+    z-index: 12;
     animation: ldio-o2zb8o8ld89 linear 1.36986301369863s infinite;
     background: var(--grey);
     width: 24px;
@@ -65,19 +66,19 @@
   .loader {
     min-width: 100%;
     min-height: 100%;
-    display: inline-block;
+    background: transparent;
     overflow: hidden;
-    background: #ffffff;
   }
   .ldio-o2zb8o8ld89 {
     width: 1000px;
     height: 1000px;
     position: relative;
+    z-index: 12;
     top: 45%;
     left: 45%;
     transform: translateX(45);
     transform: translateY(25%);
     backface-visibility: hidden;
-    transform-origin: 0 0; /* see note above */
+    transform-origin: 0 0; 
+    background: transparent;
   }
-  .ldio-o2zb8o8ld89 div { box-sizing: content-box; }

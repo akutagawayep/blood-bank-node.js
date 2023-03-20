@@ -114,11 +114,25 @@ export default class Store {
     try {
       this.setLoading(true);
       const res = await PostService.delete(id);
-      console.log(res);
 
-      res.data.deleted===true
+      res.data.deleted === true
         ? toast.success("вы удалили пост")
         : toast.warning("что-то пошло не так");
+    } catch (e) {
+      e.response.status === 400
+        ? toast.error(e.response.data.message)
+        : toast.warning("непредвиденная ошибка", { theme: "dark" });
+      return "";
+    } finally {
+      this.setLoading(false);
+    }
+  }
+  async activate(id,active) {
+    try {
+      this.setLoading(true);
+      const res = await PostService.activate(id,active);
+      console.log(res);
+      toast.success("вы успешно изменили статус поста");
     } catch (e) {
       e.response.status === 400
         ? toast.error(e.response.data.message)

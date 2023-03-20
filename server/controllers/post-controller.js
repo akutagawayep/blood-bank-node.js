@@ -42,7 +42,17 @@ class postController {
     try {
       const { uid } = req.body;
       const posts = await postService.delPost(uid);
-      return res.json((posts? { deleted: true } : { deleted: false }));
+      return res.json(posts ? { deleted: true } : { deleted: false });
+    } catch (e) {
+      next(e);
+    }
+  }
+  async update(req, res, next) {
+    try {
+      const { uid, isActive } = req.body;
+      const posts = await postService.update(uid,isActive);
+      console.log(posts);
+      return res.json(posts);
     } catch (e) {
       next(e);
     }

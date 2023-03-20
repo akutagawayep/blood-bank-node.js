@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiFillAlert, AiFillCodepenSquare } from "react-icons/ai";
 import { toast } from "react-toastify";
+import { Context } from "../..";
 import Card from "../../components/card";
 import Modal from "../../components/modal";
 import PostService from "../../services/PostService";
@@ -9,42 +10,28 @@ import Input from "../../UI/Input";
 import s from "./allPatientsPage.module.scss";
 const AllPatientsPage = ({ role }) => {
   const [patients, setPatients] = useState([]);
-
+  const [active, setActive] = useState(false);
   const [isVisible, setIsvisible] = useState(false);
   const [type, setType] = useState("");
   const [isId, setIsId] = useState(0);
-  const [search, setSearch] = useState("");
+  const { store } = useContext(Context);
 
   const getUsers = async () => {
     try {
+      store.setLoading(true);
       const res = await PostService.fetchposts();
       setPatients(res.data);
     } catch (e) {
       toast.warn(e.data?.message);
+    } finally {
+      store.setLoading(false);
     }
-  };
-  const find = (e ) => {
-    setSearch(e.target.value);
-    setPatients(patients.filter((e) => e.name.contains(search)));
-  };
+  };  
+  // };
   return (
     <div className={s.root}>
       <Button title={`Все ${role}ы`} onclick={getUsers} />
-      <Input
-        logo={<AiFillCodepenSquare />}
-        child={ 
-          <>
-            <input
-              value={search}
-              onChange={(e) => {
-                find(e);
-              }}
-              placeholder="Поисковик по имени"
-            />{" "}
-            <button type="button" title={<AiFillAlert />} />{" "}
-          </>
-        }
-      />
+     
       <Button
         title={`Все ${role}ы  группы крови О`}
         onclick={() => setType("O")}
@@ -72,7 +59,8 @@ const AllPatientsPage = ({ role }) => {
                   number={post.number}
                   role={post.role}
                   type={post.type}
-                  iaActive={post.isActive}
+                  isActive={post.isActive}
+                  setActive={setActive}
                   city={post.city}
                   id={post.uid}
                   setIsVisible={setIsvisible}
@@ -94,7 +82,8 @@ const AllPatientsPage = ({ role }) => {
                   number={post.number}
                   role={post.role}
                   type={post.type}
-                  iaActive={post.isActive}
+                  isActive={post.isActive}
+                  setActive={setActive}
                   city={post.city}
                   id={post.uid}
                   setIsVisible={setIsvisible}
@@ -111,8 +100,11 @@ const AllPatientsPage = ({ role }) => {
         state={isVisible}
         id={isId}
         setIsvisible={setIsvisible}
+        active={active}
+        setActive={setActive}
         patients={patients}
         setPatients={setPatients}
+        title={"Удалить этот пост?"}
       />
     </div>
   );

@@ -45,6 +45,20 @@ class PostService {
       console.log(e);
     }
   }
+  async update(id, active) {
+    try {
+      const res = await PostModel.findOneAndUpdate(
+        {
+          uid: id,
+          isActive: active,
+        }
+      );
+      console.log(res + "fff");
+      return res;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 module.exports = new PostService();

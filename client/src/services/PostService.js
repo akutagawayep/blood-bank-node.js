@@ -8,6 +8,9 @@ export default class PostService {
     return $api.post("/post", payload);
   }
   static async delete(payload) {
-    return $api.delete("/post/del", {data:payload});
+    return $api.delete("/post/:uid", { data: payload });
+  }
+  static async activate(id,active) {
+    return $api.patch("/post/:id", { uid: id, isActive: active });
   }
 }

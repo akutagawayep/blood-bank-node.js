@@ -6,17 +6,16 @@ import RoutesComp from "./components/routesComp";
 import { ToastContainer} from "react-toastify";
 import { Context } from ".";
 import Loader from "./components/loader";
+import Card from "./components/card";
 
 const App = () => {
   const { store } = useContext(Context);
 
-  if (store.isLoading) {
-    return <Loader/>;
-  }
-
   return (
     <>
+    {store.isLoading?<Loader/>:""} 
       <Sidebar />
+     
       <RoutesComp />
       <ToastContainer
         pauseOnFocusLoss

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./card.module.scss";
 import {
   AiFillAliwangwang,
@@ -14,16 +14,23 @@ const Card = ({
   type,
   number,
   isActive,
+  setActive,
   city,
   id,
   setIsVisible,
   setId,
 }) => {
-  const [check, setCheck] = useState(isActive);
-
   const del = async () => {
     setIsVisible(true);
     setId(id);
+  };
+
+  const change = async () => {
+    setIsVisible(true);
+    setId(id);
+    console.log(id);
+    setActive(isActive);
+    console.log(isActive+"ghj");
   };
   return (
     <div className={s.root}>
@@ -35,7 +42,9 @@ const Card = ({
 
       <div className={s.container}>
         <form>
-          <h2> {name} <br /> {id}</h2>
+          <h2>
+            {name} <br /> {id}
+          </h2>
           <h3>
             {role} {type}
           </h3>
@@ -45,7 +54,10 @@ const Card = ({
           <p> {number}</p>
         </form>
         <p> {city}</p>
-
+        <Button
+          title={isActive ? "Активный" : "не активный"}
+          onclick={change}
+        />
         <Button title={<AiFillDelete />} onclick={del} />
       </div>
     </div>
